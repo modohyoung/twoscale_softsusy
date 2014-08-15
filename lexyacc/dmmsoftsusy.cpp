@@ -915,16 +915,16 @@ int main( int argc, char** argv) {
 	
       }
       else {
-	scanrecord( scanfile, param, r, 
-		    0, 0, 0, 0, "" ) ; 
+	//scanrecord( scanfile, param, r, 
+	//	    0, 0, 0, 0, "" ) ; 
 
       }
       }
       else
 	{
-	  scanrecord( scanfile, param, r, 0, 0, 0, 0, "" ) ;
+	  //scanrecord( scanfile, param, r, 0, 0, 0, 0, "" ) ;
 	}
-      //scanrecord( scanfile, param, r,0, 0, 0, 0, "" ) ;
+     
       }
     scanfile.close(); 
   }
