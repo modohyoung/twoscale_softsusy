@@ -844,7 +844,8 @@ int main( int argc, char** argv) {
       //      cout.rdbuf(strm_buffer); 
       //      tempfile.close(); 
       //      tempfile.close(); 
- 
+      if(!r.displayProblem().test())
+      {
       cout << "enterMircOmegas" << endl; 
       int fMicro = enterMicrOmegas( oneset, r, param ); 
       cout << "checkNAN = " << checkNAN (r) << endl;
@@ -918,7 +919,11 @@ int main( int argc, char** argv) {
 		    0, 0, 0, 0, "" ) ; 
 
       }
-      
+      }
+      else
+	{
+	  scanrecord( scanfile, param, r, 0, 0, 0, 0, "" ) ;
+	}
       //scanrecord( scanfile, param, r,0, 0, 0, 0, "" ) ;
       }
     scanfile.close(); 
