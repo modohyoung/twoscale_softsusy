@@ -1,5 +1,5 @@
 : 
-  CALCHEP=  
+  CALCHEP=/afs/cern.ch/user/d/dmo/private/Workspace/twoscale_softsusy/micromegas_2.2.CPC/CalcHEP_src 
 #-------------------- 
 
 if(test $# -ne 1) then

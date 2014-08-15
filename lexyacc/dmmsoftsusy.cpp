@@ -14,6 +14,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
+#include <unistd.h>
 
 #include "mycomplex.h"
 #include "def.h"
@@ -336,6 +338,11 @@ void scanrecord( ofstream& spectrumfile, param_set& param, MssmSoftsusy& m,
 	       << " " << gmuon_value 
 	       << " " << bsmumu_value
 	       << " " << Omega
+               << " " << m.displayGaugino(1)
+               << " " << m.displayGaugino(2)
+               << " " << m.displayGaugino(3)
+               << " " << m.displayMh2Squared() 
+               << " " << m.displayMh1Squared() 
                << " " << m.displayProblem().test() 
 	       << " " << mess
     //////////Yongyan change//////////
@@ -379,10 +386,10 @@ void RGRUN( ofstream& rgefile, MssmSoftsusy& m ,
     double At = m.displaySoftA( UA,  3, 3 ) ;
     double Ab = m.displaySoftA( DA,  3, 3 ) ; 
     double Atau = m.displaySoftA( EA, 3, 3 ) ;
-
+ 
     double mHusqr = m.displayMh2Squared(); 
     double mHdsqr = m.displayMh1Squared(); 
-
+  
     rgefile << scale 
 	    << " " << m.displayGaugeCoupling(1) 
 	    << " " << m.displayGaugeCoupling(2)
@@ -601,6 +608,8 @@ int main( int argc, char** argv) {
   char* outfilename; 
   outputCharacteristics(6);
 
+  srand( (unsigned)time(NULL) + (unsigned)getpid() );
+
   cerr << "SOFTSUSY" << SOFTSUSY_VERSION 
        << " test program, Ben Allanach 2002\n";
   cerr << "If you use SOFTSUSY, please refer to B.C. Allanach,\n";
@@ -814,11 +823,11 @@ int main( int argc, char** argv) {
 					   2e16, param.Mmess, 
 					   pars, param.sgnMu, param.tanb, oneset, uni );  
       
-
+      
       cout << oneset << endl; 
       cout << r.displayPhys() << endl; 
 
-
+      
       
       //ofstream tempfile("LesHouches.dat"); 
     
@@ -835,10 +844,10 @@ int main( int argc, char** argv) {
       //      cout.rdbuf(strm_buffer); 
       //      tempfile.close(); 
       //      tempfile.close(); 
-
+ 
       cout << "enterMircOmegas" << endl; 
       int fMicro = enterMicrOmegas( oneset, r, param ); 
-
+      cout << "checkNAN = " << checkNAN (r) << endl;
 
       if( checkNAN( r ) ) { 
 
@@ -910,7 +919,8 @@ int main( int argc, char** argv) {
 
       }
       
-    }
+      //scanrecord( scanfile, param, r,0, 0, 0, 0, "" ) ;
+      }
     scanfile.close(); 
   }
   else if(  valuelist[C_METHOD].method == ScanMethod  &&
