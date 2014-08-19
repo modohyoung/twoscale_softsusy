@@ -343,8 +343,7 @@ void scanrecord( ofstream& spectrumfile, param_set& param, MssmSoftsusy& m,
                << " " << m.displayGaugino(3)
                << " " << m.displayMh2Squared() 
                << " " << m.displayMh1Squared() 
-               << " " << m.displayProblem().test() 
-	       << " " << mess
+               << " " << m.displayProblem().test()
     //////////Yongyan change//////////
 	       << " " << p.mixNeut(1,1)
 	       << " " << p.mixNeut(2,1)
@@ -354,6 +353,15 @@ void scanrecord( ofstream& spectrumfile, param_set& param, MssmSoftsusy& m,
 	       << " " << p.mixNeut(2,2)
 	       << " " << p.mixNeut(3,2)
 	       << " " << p.mixNeut(4,2)
+               << " " << p.mixNeut(1,3)
+               << " " << p.mixNeut(2,3)
+               << " " << p.mixNeut(3,3)
+               << " " << p.mixNeut(4,3)
+               << " " << p.mixNeut(1,4)
+               << " " << p.mixNeut(2,4)
+               << " " << p.mixNeut(3,4)
+               << " " << p.mixNeut(4,4)
+               << " " << mess
     //////////Yongyan change//////////
 	       << endl ; 
 
