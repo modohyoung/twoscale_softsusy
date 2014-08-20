@@ -151,9 +151,10 @@ void deflectedmirageBcsUV( MssmSoftsusy& m, const DoubleVector &pars )
   m.setGauginoMass(1, M1 );
   m.setGauginoMass(2, M2 ); 
   m.setGauginoMass(3, M3 ); 
-  m.setMh2Squared( M2Hu ); 
-  m.setMh1Squared( M2Hd ); 
-
+  //  m.setMh2Squared( M2Hu );
+  //  m.setMh1Squared( M2Hd ); 
+  m.setMh2Squared( M2Hd ); // UPSIDE DOWN
+  m.setMh1Squared( M2Hu ); // UPSIDE DOWN
 
   for( int i = 1 ; i <= 3 ; i++ ) {
     m.setSoftMassElement(mQl, i, i, M2Q[i] );
@@ -239,6 +240,12 @@ void dmm_Threshold( MssmSoftsusy & m, const DoubleVector & pars,
   ddgammaL  = 3./2.* (-N) *g2*g2*g2*g2 + 3./10.* (-N) *g1*g1*g1*g1;
   ddgammaE  = 6./5.* (-N) *g1*g1*g1*g1; 
 
+
+  double mytemp; // UPSIDE DOWN
+  mytemp = ddgammaHu; //UPSIDE DOWN 
+  ddgammaHu = ddgammaHd; //UPSIDE DOWN
+  ddgammaHd = mytemp; // UPSIDE DOWN
+
   double deltamqlsq , deltamllsq, deltamursq, deltamdrsq, deltamersq ; 
   double deltamhusq , deltamhdsq; 
 
@@ -265,6 +272,9 @@ void dmm_Threshold( MssmSoftsusy & m, const DoubleVector & pars,
   dmhusq = dmllsq; 
   dmhdsq = dmllsq; 
 
+  mytemp = dmhusq; // UPSIDE DOWN
+  dmhusq = dmhdsq; // UPSIDE DOWN
+  dmhdsq = mytemp; // UPSIDE DOWN
 }
 
 
@@ -302,7 +312,6 @@ void deflectedmirageBcsThresholdUp( MssmSoftsusy & m,
   double massmHu = m.displayMh2Squared(); 
   double massmHd = m.displayMh1Squared(); 
 
-
   DoubleMatrix id(3, 3);
   id(1, 1) = 1.0; id(2, 2) = 1.0; id(3, 3) = 1.0;
 
@@ -311,8 +320,10 @@ void deflectedmirageBcsThresholdUp( MssmSoftsusy & m,
   m.setSoftMassMatrix(mDr, massmDr - dmdrsq * id);
   m.setSoftMassMatrix(mLl, massmLl - dmllsq * id);  
   m.setSoftMassMatrix(mEr, massmEr - dmersq * id);
-  m.setMh2Squared(massmHu - dmhusq);
-  m.setMh1Squared(massmHd - dmhdsq);
+  //m.setMh2Squared(massmHu - dmhusq);
+  //m.setMh1Squared(massmHd - dmhdsq);
+  m.setMh1Squared(massmHu - dmhusq); // UPSIDE DOWN
+  m.setMh2Squared(massmHd - dmhdsq); // UPSIDE DOWN
 
 }
 
@@ -359,8 +370,10 @@ void deflectedmirageBcsThresholdDown( MssmSoftsusy & m,
   m.setSoftMassMatrix(mDr, massmDr + dmdrsq * id);
   m.setSoftMassMatrix(mLl, massmLl + dmllsq * id);  
   m.setSoftMassMatrix(mEr, massmEr + dmersq * id);
-  m.setMh2Squared(massmHu + dmhusq);
-  m.setMh1Squared(massmHd + dmhdsq);
+  //m.setMh2Squared(massmHu + dmhusq);
+  //m.setMh1Squared(massmHd + dmhdsq);
+  m.setMh1Squared(massmHu + dmhusq); // UPSIDE DOWN
+  m.setMh2Squared(massmHd + dmhdsq); // UPSIDE DOWN
 
 }
 
